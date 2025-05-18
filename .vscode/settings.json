@@ -1,0 +1,12 @@
+{
+    "marscode.chatLanguage": "cn",
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c"
+    },
+    "marscode.codeCompletionPro": {
+        "enableCodeCompletionPro": true
+    },
+    "marscode.enableInlineCommand": false,
+    "C_Cpp.errorSquiggles": "disabled"
+}
