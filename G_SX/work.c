@@ -23,7 +23,7 @@ Node* creatNew(){//创建节点
 }
 
 
-Node1* wap(){
+Node1 *wap(){//创建平均成绩节点
     Node1 *t;
     t=(Node1*)malloc(sizeof(Node1));
     if(t==NULL){
@@ -45,14 +45,14 @@ float avg(int i,Node* s){//求平均成绩
                 sum+=k->a[j];
             }
             float avg=sum/3;
-            printf("学生%d的平均成绩是：%.2f\n",i,avg);
+            printf("学生%d的平均成绩是：%.2f\n",i+1,avg);
             return avg;
         }
     }
     return 0;
 }
 
-void com(Node1* Head,FILE *fp){
+void com(Node1* Head,FILE *fp){//冒泡排序
     if(!Head||!Head->next){
         return;
     }
@@ -108,12 +108,7 @@ int main(){
         k=r;
     }
     for(int y=0;y<b;y++){
-        Node1* post=(Node1*)malloc(sizeof(Node1));
-        if(post==NULL){
-            printf("分配排序空间失败");
-            free(post);
-            exit(1);
-        }
+        Node1* post=wap();
         post->next=NULL;
         list->next=post;
         post->data=avg(y,s);
@@ -126,3 +121,29 @@ int main(){
     system("pause");
     return 0;
 }
+/*main程序//示例
+├── Node链表（存储原始成绩）
+│   ├── 头节点: s (Node*)
+│   │   └── next → 学生1节点
+│   ├── 学生1节点
+│   │   ├── a[3]: [80, 85, 90]
+│   │   └── next → 学生2节点
+│   ├── 学生2节点
+│   │   ├── a[3]: [70, 75, 80]
+│   │   └── next → 学生3节点
+│   └── 学生3节点
+│       ├── a[3]: [90, 95, 85]
+│       └── next → NULL
+│
+└── Node1链表（存储平均分）
+    ├── 头节点: Head (Node1*)
+    │   └── next → 平均分节点1
+    ├── 平均分节点1
+    │   ├── data: 85.00（学生1）
+    │   └── next → 平均分节点2
+    ├── 平均分节点2
+    │   ├── data: 75.00（学生2）
+    │   └── next → 平均分节点3
+    └── 平均分节点3
+        ├── data: 90.00（学生3）
+        └── next → NULL*/
