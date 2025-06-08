@@ -1,21 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct Node{//å­˜æˆç»©
-    float a[3];//å‡è®¾æ¯ä¸ªäººä¸‰ç§‘
+typedef struct Node{//´æ³É¼¨
+    float a[3];//¼ÙÉèÃ¿¸öÈËÈý¿Æ
     struct Node* next;
 }Node;
 
-typedef struct Node1{//å­˜å¹³å‡æˆç»©
+typedef struct Node1{//´æÆ½¾ù³É¼¨
     float data;
     struct Node1* next;
 }Node1;
 
-Node* creatNew(){//åˆ›å»ºèŠ‚ç‚¹
+Node* creatNew(){//´´½¨½Úµã
     Node *s;
     s=(Node*)malloc(sizeof(Node));
     if(s==NULL){
-        printf("åˆ†é…å†…å­˜å¤±è´¥ï¼ï¼ï¼");
+        printf("·ÖÅäÄÚ´æÊ§°Ü£¡£¡£¡");
         exit(1);
     }
     s->next=NULL;
@@ -23,11 +23,11 @@ Node* creatNew(){//åˆ›å»ºèŠ‚ç‚¹
 }
 
 
-Node1 *wap(){//åˆ›å»ºå¹³å‡æˆç»©èŠ‚ç‚¹
+Node1 *wap(){//´´½¨Æ½¾ù³É¼¨½Úµã
     Node1 *t;
     t=(Node1*)malloc(sizeof(Node1));
     if(t==NULL){
-        printf("åˆ†é…å†…å­˜å¤±è´¥ï¼ï¼ï¼");
+        printf("·ÖÅäÄÚ´æÊ§°Ü£¡£¡£¡");
         exit(1);
     }
     t->next=NULL;
@@ -35,24 +35,24 @@ Node1 *wap(){//åˆ›å»ºå¹³å‡æˆç»©èŠ‚ç‚¹
 }
 
 
-float avg(int i,Node* s){//æ±‚å¹³å‡æˆç»©
+float avg(int i,Node* s){//ÇóÆ½¾ù³É¼¨
     Node* k;
     k=s->next;
     for(int n=0;k!=NULL;k=k->next,n++){
-        if(n==i){//ç›®çš„æ˜¯ç¬¬næ¬¡èƒ½åˆ°èŠ‚ç‚¹n
+        if(n==i){//Ä¿µÄÊÇµÚn´ÎÄÜµ½½Úµãn
             float sum=0;
             for(int j=0;j<3;j++){
                 sum+=k->a[j];
             }
             float avg=sum/3;
-            printf("å­¦ç”Ÿ%dçš„å¹³å‡æˆç»©æ˜¯ï¼š%.2f\n",i+1,avg);
+            printf("Ñ§Éú%dµÄÆ½¾ù³É¼¨ÊÇ£º%.2f\n",i+1,avg);
             return avg;
         }
     }
     return 0;
 }
 
-void com(Node1* Head,FILE *fp){//å†’æ³¡æŽ’åº
+void com(Node1* Head,FILE *fp){//Ã°ÅÝÅÅÐò
     if(!Head||!Head->next){
         return;
     }
@@ -71,8 +71,8 @@ void com(Node1* Head,FILE *fp){//å†’æ³¡æŽ’åº
             Y=Y->next;
         }
     }while(swap);
-    printf("å¹³å‡åˆ†ç”±é«˜åˆ°ä½Žä¸º:\n");
-    fprintf(fp,"å¹³å‡åˆ†ç”±é«˜åˆ°ä½Žä¸º:\n");
+    printf("Æ½¾ù·ÖÓÉ¸ßµ½µÍÎª:\n");
+    fprintf(fp,"Æ½¾ù·ÖÓÉ¸ßµ½µÍÎª:\n");
     for(Y=Head->next; Y!=NULL; Y=Y->next){
         printf("%.2f\n", Y->data);
         fprintf(fp,"%.2f\n",Y->data);
@@ -83,18 +83,18 @@ int main(){
     Node *s=creatNew(),*k=s;
     Node1 *Head=wap(),*list=Head;
 
-    printf("å­¦ç”Ÿäººæ•°ï¼š\n");
+    printf("Ñ§ÉúÈËÊý£º\n");
     scanf("%d",&b);
 
-    FILE *fp=fopen("æˆç»©.txt","w");
+    FILE *fp=fopen("³É¼¨.txt","w");
     if (fp==NULL) {
-        printf("æ— æ³•åˆ›å»ºæ–‡ä»¶ï¼\n");
+        printf("ÎÞ·¨´´½¨ÎÄ¼þ£¡\n");
         exit(1);
     }
 
-    printf("è¯·è¾“å…¥æˆç»©(ä¸‰ç§‘):\n");
+    printf("ÇëÊäÈë³É¼¨(Èý¿Æ):\n");
     for(int i=0;i<b;i++){
-        printf("çŽ°åœ¨æ˜¯å­¦ç”Ÿ%d\n",i+1);
+        printf("ÏÖÔÚÊÇÑ§Éú%d\n",i+1);
         float x[3];
         for(int j=0;j<3;j++){
             scanf("%f",&x[j]);
@@ -112,38 +112,38 @@ int main(){
         post->next=NULL;
         list->next=post;
         post->data=avg(y,s);
-        fprintf(fp,"å­¦ç”Ÿ%dçš„å¹³å‡æˆç»©æ˜¯ï¼š%.2f\n", y+1,post->data);
+        fprintf(fp,"Ñ§Éú%dµÄÆ½¾ù³É¼¨ÊÇ£º%.2f\n", y+1,post->data);
         list=post;
     }
     com(Head,fp);
     fclose(fp);
-    printf("æˆç»©.txtå·²ä¿å­˜\n");
+    printf("³É¼¨.txtÒÑ±£´æ\n");
     system("pause");
     return 0;
 }
-/*mainç¨‹åº//ç¤ºä¾‹
-â”œâ”€â”€ Nodeé“¾è¡¨ï¼ˆå­˜å‚¨åŽŸå§‹æˆç»©ï¼‰
-â”‚   â”œâ”€â”€ å¤´èŠ‚ç‚¹: s (Node*)
-â”‚   â”‚   â””â”€â”€ next â†’ å­¦ç”Ÿ1èŠ‚ç‚¹
-â”‚   â”œâ”€â”€ å­¦ç”Ÿ1èŠ‚ç‚¹
-â”‚   â”‚   â”œâ”€â”€ a[3]: [80, 85, 90]
-â”‚   â”‚   â””â”€â”€ next â†’ å­¦ç”Ÿ2èŠ‚ç‚¹
-â”‚   â”œâ”€â”€ å­¦ç”Ÿ2èŠ‚ç‚¹
-â”‚   â”‚   â”œâ”€â”€ a[3]: [70, 75, 80]
-â”‚   â”‚   â””â”€â”€ next â†’ å­¦ç”Ÿ3èŠ‚ç‚¹
-â”‚   â””â”€â”€ å­¦ç”Ÿ3èŠ‚ç‚¹
-â”‚       â”œâ”€â”€ a[3]: [90, 95, 85]
-â”‚       â””â”€â”€ next â†’ NULL
-â”‚
-â””â”€â”€ Node1é“¾è¡¨ï¼ˆå­˜å‚¨å¹³å‡åˆ†ï¼‰
-    â”œâ”€â”€ å¤´èŠ‚ç‚¹: Head (Node1*)
-    â”‚   â””â”€â”€ next â†’ å¹³å‡åˆ†èŠ‚ç‚¹1
-    â”œâ”€â”€ å¹³å‡åˆ†èŠ‚ç‚¹1
-    â”‚   â”œâ”€â”€ data: 85.00ï¼ˆå­¦ç”Ÿ1ï¼‰
-    â”‚   â””â”€â”€ next â†’ å¹³å‡åˆ†èŠ‚ç‚¹2
-    â”œâ”€â”€ å¹³å‡åˆ†èŠ‚ç‚¹2
-    â”‚   â”œâ”€â”€ data: 75.00ï¼ˆå­¦ç”Ÿ2ï¼‰
-    â”‚   â””â”€â”€ next â†’ å¹³å‡åˆ†èŠ‚ç‚¹3
-    â””â”€â”€ å¹³å‡åˆ†èŠ‚ç‚¹3
-        â”œâ”€â”€ data: 90.00ï¼ˆå­¦ç”Ÿ3ï¼‰
-        â””â”€â”€ next â†’ NULL*/
+/*main³ÌÐò//Ê¾Àý
+©À©¤©¤ NodeÁ´±í£¨´æ´¢Ô­Ê¼³É¼¨£©
+©¦   ©À©¤©¤ Í·½Úµã: s (Node*)
+©¦   ©¦   ©¸©¤©¤ next ¡ú Ñ§Éú1½Úµã
+©¦   ©À©¤©¤ Ñ§Éú1½Úµã
+©¦   ©¦   ©À©¤©¤ a[3]: [80, 85, 90]
+©¦   ©¦   ©¸©¤©¤ next ¡ú Ñ§Éú2½Úµã
+©¦   ©À©¤©¤ Ñ§Éú2½Úµã
+©¦   ©¦   ©À©¤©¤ a[3]: [70, 75, 80]
+©¦   ©¦   ©¸©¤©¤ next ¡ú Ñ§Éú3½Úµã
+©¦   ©¸©¤©¤ Ñ§Éú3½Úµã
+©¦       ©À©¤©¤ a[3]: [90, 95, 85]
+©¦       ©¸©¤©¤ next ¡ú NULL
+©¦
+©¸©¤©¤ Node1Á´±í£¨´æ´¢Æ½¾ù·Ö£©
+    ©À©¤©¤ Í·½Úµã: Head (Node1*)
+    ©¦   ©¸©¤©¤ next ¡ú Æ½¾ù·Ö½Úµã1
+    ©À©¤©¤ Æ½¾ù·Ö½Úµã1
+    ©¦   ©À©¤©¤ data: 85.00£¨Ñ§Éú1£©
+    ©¦   ©¸©¤©¤ next ¡ú Æ½¾ù·Ö½Úµã2
+    ©À©¤©¤ Æ½¾ù·Ö½Úµã2
+    ©¦   ©À©¤©¤ data: 75.00£¨Ñ§Éú2£©
+    ©¦   ©¸©¤©¤ next ¡ú Æ½¾ù·Ö½Úµã3
+    ©¸©¤©¤ Æ½¾ù·Ö½Úµã3
+        ©À©¤©¤ data: 90.00£¨Ñ§Éú3£©
+        ©¸©¤©¤ next ¡ú NULL*/
